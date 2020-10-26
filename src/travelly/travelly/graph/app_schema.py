@@ -14,6 +14,7 @@ from guide.models import (
 
 		Guide,
 		Review,
+		Booking
 
 	)
 
@@ -69,6 +70,14 @@ class ReviewType(DjangoObjectType):
 
 		model = Review
 
+		# The Booking Model
+
+
+class BookingType(DjangoObjectType):
+
+	class Meta:
+		model = Booking
+
 		# The Post Model
 
 class PostType(DjangoObjectType):
@@ -110,6 +119,12 @@ class Query(object):
 	reviews			= 	graphene.List(ReviewType)
 	review 			= 	graphene.Field(ReviewType, id = graphene.Int())
 
+	# The Booking List and Detail Query
+
+
+	Bookings 		= 	graphene.List(BookingType)
+	Booking 		= 	graphene.Field(BookingType, id = graphene.Int())
+
 	# The Post List and Detail Query 
 
 	posts 			= 	graphene.List(PostType)
@@ -120,7 +135,7 @@ class Query(object):
 
 
 	comments 		= 	graphene.List(CommentType)
-	comment 		= 	graphene.Field(CommentType)
+	comment 		= 	graphene.Field(CommentType, id = graphene.Int())
 
 
 	# The User Detail Resolve Method
@@ -205,7 +220,6 @@ class Query(object):
 	# The Comments List and Detail Resolve Method
 
 
-
 	def resolve_comments(self, info, **kwargs):
 
 		user 		=   info.context.user
@@ -216,7 +230,7 @@ class Query(object):
 
 		pass
 
-		
+
 
 
 
