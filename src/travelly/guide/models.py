@@ -12,6 +12,8 @@ class Guide(models.Model):
 	location		= 	models.CharField(max_length = 4000) 
 	price 			=	models.IntegerField()
 	time_available	= 	models.DateTimeField()
+	featured_image	= 	models.FileField(blank = True, null = True)
+	gallery_images 	= 	models.FileField(blank = True, null = True)
 	created_at		=	models.DateTimeField(auto_now = False, auto_now_add = True)
 
 	def __str__(self):

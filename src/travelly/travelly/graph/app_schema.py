@@ -51,6 +51,11 @@ class ProfileType(DjangoObjectType):
 
 		model = Profile
 
+	avatar 	 		= graphene.String()
+	cover_photo 	= graphene.String()
+
+
+
 
 		# The Guide Model
 

@@ -156,6 +156,43 @@ class PostLikeToggleMutation(graphene.Mutation):
 
 		# Comment Create Mutation
 
+class CommentCreateMutation(graphene.Mutation):
+
+	comment 			=  graphene.Field(CommentType)
+
+	class Arguments:
+
+		target_id 			= graphene.Int()
+		text 				= graphene.String()
+		photo 				= graphene.String()
+		created_at			= graphene.DateTime()
+
+
+	def mutate(self, info, target, text, photo, created_at):
+
+		user  				=  	info.context.user
+		target_obj 			= 	Post.objects.filter(pk  = target).first()
+		if user.is_anonymous:
+			raise GraphQLError("You Must Be Logged In To Create Comments")	
+
+		else:
+
+			comment_obj = Comment.objects.create(
+
+					user 		= user,
+					target 		= target_obj,
+					text 		= text,
+					photo 		= photo,
+					created_at 	= created_at	
+
+				)
+
+			comment_obj.save()
+
+		return CommentCreateMutation(comment = comment_obj)
+
+
+
 
 		# Comment Update Mutation
 

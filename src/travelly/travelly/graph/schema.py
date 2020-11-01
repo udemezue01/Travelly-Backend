@@ -11,9 +11,21 @@ from post.mutation import (
 
 	)
 
+from userprofile.mutation import(
+
+	ProfileCreateMutation,
+	ProfileUpdateMutation
+
+	)
+
 
 
 class Mutation(graphene.ObjectType):
+
+	# The Profile Create, Update and Delete Mutation
+
+	profile_create		= 	ProfileCreateMutation.Field()
+	profile_update		= 	ProfileUpdateMutation.Field()
 
 	# The Post Create, Update and Delete Mutation
 
