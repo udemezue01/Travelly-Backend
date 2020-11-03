@@ -2,7 +2,7 @@ import graphene
 
 
 from .app_schema import Query
-from post.mutation import (
+from post.mutations import (
 
 	PostCreateMutation,
 	PostUpdateMutation,
@@ -11,7 +11,7 @@ from post.mutation import (
 
 	)
 
-from userprofile.mutation import(
+from userprofile.mutations import(
 
 	ProfileCreateMutation,
 	ProfileUpdateMutation

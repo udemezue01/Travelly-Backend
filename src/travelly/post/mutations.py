@@ -25,7 +25,7 @@ from .models import(
 
 		# Post Create Mutation
 		
- class PostCreateMutation(graphene.Mutation):
+class PostCreateMutation(graphene.Mutation):
 
  	post 				= graphene.Field(PostType)
 
@@ -71,30 +71,33 @@ class PostUpdateMutation(graphene.Mutation):
 
 	class Arguments:
 
+
 		post_id			= graphene.Int()
 		text 			= graphene.String()
- 		photo 			= graphene.String()
- 		video 			= graphene.String()
- 		location		= graphene.String()
+		photo 			= graphene.String()
+		video 			= graphene.String()
+		location		= graphene.String()
 
- 	def mutate(self, info, post_id, text, photo, video, location):
+	def mutate(self, info, post_id, text, photo, video, location):
 
- 		user  			= info.context.user
 
- 		if user.is_anonymous:
+		user  			= info.context.user
+
+		if user.is_anonymous:
  			raise GraphQLError("You Must be Logged In To Edit Post")
 
- 		else:
- 			post_obj = Post.objects.get(pk = post_id)
- 			post_obj.user 		= user
- 			post_obj.text 		= text
- 			post_obj.photo 		= photo
- 			post_obj.video		= video
- 			post_obj.location 	= location
+		else:
 
- 			post_obj.save() 
+			post_obj = Post.objects.get(pk = post_id)
+			post_obj.user 		= user
+			post_obj.text 		= text
+			post_obj.photo 		= photo
+			post_obj.video		= video
+			post_obj.location 	= location
 
- 		return PostUpdateMutation(post = post_obj)
+			post_obj.save() 
+
+		return PostUpdateMutation(post = post_obj)
 
 
 		# Post Delete Mutation
@@ -107,7 +110,7 @@ class PostDeleteMutation(graphene.Mutation):
 
 	class Arguments:
 
-		post_id = graphene.Field()
+		post_id = graphene.Int()
 
 
 	def mutate(self, info, post_id):
