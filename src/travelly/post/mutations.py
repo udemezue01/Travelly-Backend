@@ -200,7 +200,66 @@ class CommentCreateMutation(graphene.Mutation):
 		# Comment Update Mutation
 
 
+class CommentUpdateMutation(graphene.Mutation):
+
+	comment  					 = graphene.Field(CommentType)
+
+	class Argument:
+
+		comment_id				 = graphene.Int()
+		text 					 = graphene.String()
+		photo 					 = graphene.String()
+
+
+
+	def mutate(self, info, comment_id, text, photo):
+
+		user 					 = info.context.user
+
+		if user.is_anonymous:
+
+			raise GraphQLError("You Must be Logged In To Update Comment")
+
+		else:
+
+			comment_obj 		   = Comment.objects.get(pk = comment_id)
+			comment_obj.text 	   = text,
+			comment_obj.photo 	   = photo
+			comment_obj.save()
+
+		return CommentUpdateMutation(comment = comment_obj)
+
+
+
+
 		# Comment Delete Mutation
+
+
+class CommentDeleteMutation(graphene.Mutation):
+
+	comment  						=  graphene.Field(CommentType)
+
+	class Argument:
+
+		comment_id 					 = graphene.Int()
+
+
+	def mutate(self, info, comment_id):
+
+		user 		=  info.context.user
+
+		if user.is_anonymous:
+
+			raise GraphQLError("You Must Be Logged In To Delete Comment")
+
+		else:
+
+			comment_obj 		= Comment.object.get(pk = comment_id)
+
+			comment_obj.delete()
+
+
+		return CommentDeleteMutation(comment = comment_obj)
 
 
 

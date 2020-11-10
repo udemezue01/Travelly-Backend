@@ -4,12 +4,20 @@ from django.conf import settings
 
 
 
+TOUR_TYPE = (
+
+	('IND', 'Individual'),
+	('GRP', 'Group')
+
+	)
+
 
 
 class Guide(models.Model):
 
 	user 			= 	models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
 	location		= 	models.CharField(max_length = 4000) 
+	tour_type 		= 	models.CharField(max_length = 3000, choices = TOUR_TYPE, blank = True, null = True)
 	price 			=	models.IntegerField()
 	time_available	= 	models.DateTimeField()
 	featured_image	= 	models.FileField(blank = True, null = True)
