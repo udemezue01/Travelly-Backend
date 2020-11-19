@@ -13,7 +13,15 @@ class PostTestCase(GraphQLTestCase):
 
 		response = self.query(
 			'''
+			query(
+				post{
 
+					id,
+					text,
+					image,
+					
+				}
+			)
 			''',
 			op_name = Post,
 
