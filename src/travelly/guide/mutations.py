@@ -24,12 +24,25 @@ from .models import(
 
 
 
+
 		# Guide Create Mutation
 
 
 class GuideCreateMutation(graphene.Mutation):
 
-	pass
+	guide 				=  graphene.Field(GuideType)
+
+	class Arguments:
+
+
+		pass
+
+	def  mutate(self, info, **kwargs):
+
+		pass
+		
+
+
 
 		# Guide Update Mutation
 
