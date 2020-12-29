@@ -2,6 +2,10 @@ import graphene
 
 
 from .app_schema import Query
+
+import graphql_jwt
+
+
 from post.mutations import (
 
 	PostCreateMutation,
@@ -25,6 +29,12 @@ from userprofile.mutations import(
 
 
 class Mutation(graphene.ObjectType):
+
+	# The Token Auth Mutation
+
+	token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+	verify_token = graphql_jwt.Verify.Field()
+	refresh_token = graphql_jwt.Refresh.Field()
 
 	# The Profile Create, Update and Delete Mutation
 
