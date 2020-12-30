@@ -10,7 +10,6 @@ App models
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-import graphql_jwt
 
 from guide.models import (
 
@@ -45,16 +44,7 @@ class UserType(DjangoObjectType):
 		model = User
 
 
-		# The Json web token
 
-# class ObtainJSONWebToken(graphql_jwt.JSONWebTokenMutation):
-
-# 	user = graphene.Field(UserType)
-
-	
-# 	def resolve(cls, root, info, **kwargs):
-
-# 		return cls(user=info.context.user)
 
 
 
