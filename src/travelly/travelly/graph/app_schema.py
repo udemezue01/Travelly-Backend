@@ -44,10 +44,6 @@ class UserType(DjangoObjectType):
 		model = User
 
 
-
-
-
-
 		# The Profile Model
 
 class ProfileType(DjangoObjectType):
@@ -60,6 +56,13 @@ class ProfileType(DjangoObjectType):
 	cover_photo 	= graphene.String()
 
 
+	def resolve_avatar(self, info):
+
+		return info.context.build_absolute_uri(self.avatar.url)
+
+	def resolve_cover_photo(self, info):
+
+		return info.context.build_absolute_uri(self.cover_photo.url)
 
 
 		# The Guide Model
@@ -70,6 +73,20 @@ class GuideType(DjangoObjectType):
 	class Meta:
 
 		model = Guide
+
+	featured_image = graphene.String()
+
+	gallery_images = graphene.String()
+
+	def resolve_featured_image(self, info):
+
+		return info.context.build_absolute_uri(self.featured_image.url)
+
+	def gallery_images(self, info):
+
+		return info.context.build_absolute_uri(self.gallery_images)
+
+
 
 		# The Review Model
 
@@ -96,6 +113,16 @@ class PostType(DjangoObjectType):
 
 		model = Post
 
+	photo   =  graphene.String()
+	video 	=  graphene.String()
+
+
+	def resolve_photo(self, info):
+		return info.context.build_absolute_uri(self.photo)
+
+	def resolve_video(self, info):
+		return info.context.build_absolute_uri(self.video)
+
 		# The Comment Model
 
 class CommentType(DjangoObjectType):
@@ -103,6 +130,12 @@ class CommentType(DjangoObjectType):
 	class Meta:
 
 		model = Comment
+
+	photo  		= graphene.String()
+
+	def resolve_photo(self, info):
+
+		return info.context.build_absolute_uri(self.photo)
 
 
 
