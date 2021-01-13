@@ -51,6 +51,10 @@ INSTALLED_APPS = [
     # Third-Party Apps
     'graphene_django',
 
+    # Rest Framework
+
+    'rest_framework',
+
      'corsheaders',
 
 ]
@@ -141,7 +145,19 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# The Django rest framework settings
 
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
+
+
+
+# Graph QL settings
 
 GRAPHENE = {
     'SCHEMA': 'travelly.graph.schema.schema',
