@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 
     # Rest Framework
 
-    'rest_framework',
+     'rest_framework',
 
      'corsheaders',
 
@@ -181,7 +181,7 @@ AUTH_USER_MODEL = 'account.User'
 CORS_ALLOWED_ORIGINS = [
 
     "http://localhost:8080",
-    "http://127.0.0.1:8000",
+    "http://127.0.0.1:7000",
     
 ]
 
