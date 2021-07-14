@@ -13,7 +13,7 @@ TOUR_TYPE = (
 
 
 
-class Guide(models.Model):
+class Tour(models.Model):
 
 	user 			= 	models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
 	location		= 	models.CharField(max_length = 4000) 
@@ -32,7 +32,7 @@ class Guide(models.Model):
 class Booking(models.Model):
 
 	user 			= 	models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
-	target 			=	models.ForeignKey(Guide, on_delete = models.CASCADE)
+	target 			=	models.ForeignKey(Tour, on_delete = models.CASCADE)
 
 	def __str__(self):
 
@@ -42,7 +42,7 @@ class Booking(models.Model):
 
 class Review(models.Model):
 	user 			= 	models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
-	target 			= 	models.ForeignKey(Guide, on_delete = models.CASCADE)
+	target 			= 	models.ForeignKey(Tour, on_delete = models.CASCADE)
 	text 			= 	models.CharField(max_length = 4000, blank = True)
 	rating 			= 	models.BooleanField(blank = True, default = False)
 

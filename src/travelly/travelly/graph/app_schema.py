@@ -11,9 +11,9 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-from guide.models import (
+from tour.models import (
 
-		Guide,
+		Tour,
 		Review,
 		Booking
 
@@ -65,14 +65,14 @@ class ProfileType(DjangoObjectType):
 		return info.context.build_absolute_uri(self.cover_photo.url)
 
 
-		# The Guide Model
+		# The Tour Model
 
 
-class GuideType(DjangoObjectType):
+class TourType(DjangoObjectType):
 
 	class Meta:
 
-		model = Guide
+		model = Tour
 
 	featured_image = graphene.String()
 
@@ -154,8 +154,8 @@ class Query(object):
 
 	# The Guide List and Detail Query
 
-	guides 			=  	graphene.List(GuideType)
-	guide 			= 	graphene.Field(GuideType, id = graphene.Int())
+	tours 			=  	graphene.List(TourType)
+	tour 			= 	graphene.Field(TourType, id = graphene.Int())
 
 	# The Review List and Detail Query
 
@@ -214,7 +214,7 @@ class Query(object):
 
 	# The Guide List and Detail Resolve  Method
 
-	def resolve_guides(self, info, **kwargs):
+	def resolve_tours(self, info, **kwargs):
 
 		user 		=  info.context.user
 
@@ -224,10 +224,10 @@ class Query(object):
 
 		else:
 
-			return Guide.objects.all()
+			return Tour.objects.all()
 
 
-	def resolve_guide(self, info, **kwargs):
+	def resolve_tour(self, info, **kwargs):
 
 		user 		= info.context.user
 		id 			= kwargs.get('id')
@@ -237,7 +237,7 @@ class Query(object):
 			raise GraphQLError("you must be authenticated to view this guide")
 
 		else:
-			return Guide.objects.get(pk = id)
+			return Tour.objects.get(pk = id)
 
 
 	# The Post List and Detail Resolve Method

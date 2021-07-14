@@ -44,9 +44,9 @@ INSTALLED_APPS = [
     
     #Local Apps
     'account',
-    'guide',
     'post',
     'userprofile',
+    'tour',
 
     # Third-Party Apps
     'graphene_django',
