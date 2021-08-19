@@ -66,6 +66,10 @@ class Book(models.Model):
 	user 			=  models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
 	target 			=  models.ForeignKey(Tour, on_delete = models.CASCADE, blank=True, null = True)
 
+	note 			=  models.CharField(max_length = 3000, blank=True, null = True)
+
+	amount			=  models.IntegerField(blank = True, null = True)
+
 
 	def __str__(self):
 
