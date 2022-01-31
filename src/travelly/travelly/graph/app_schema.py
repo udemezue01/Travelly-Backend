@@ -142,7 +142,7 @@ class CommentType(DjangoObjectType):
 
 
 
-class Query(object):
+class Query(graphene.ObjectType):
 
 	# The User Detail
 
